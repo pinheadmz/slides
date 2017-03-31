@@ -1,0 +1,208 @@
+FBI(1)                                              Linux framebuffer imageviewer                                              FBI(1)
+
+
+
+NNAAMMEE
+       fbi - Linux framebuffer imageviewer
+
+SSYYNNOOPPSSIISS
+       ffbbii [_o_p_t_i_o_n_s] _f_i_l_e _._._.
+
+DDEESSCCRRIIPPTTIIOONN
+       FFbbii displays the specified file(s) on the linux console using the framebuffer device. _P_h_o_t_o_C_D, _j_p_e_g, _p_p_m, _g_i_f, _t_i_f_f, _x_w_d, _b_m_p,
+       _p_n_g and _w_e_b_p formats are supported natively. For other ffbbii tries to use IImmaaggeeMMaaggiicckk(1)´s ccoonnvveerrtt(1).
+
+OOPPTTIIOONNSS
+       --hh,, ----hheellpp
+              Print usage info.
+
+       --VV,, ----vveerrssiioonn
+              Print ffbbii version number.
+
+       ----ssttoorree
+              Write command line arguments to config file.
+
+       --ll _f_i_l_e,, ----lliisstt _f_i_l_e
+              Read image filelist from _f_i_l_e.
+
+       --PP,, ----tteexxtt
+              Enable textreading mode. In this mode ffbbii will display large images without vertical offset (default is to  center  the
+              images).  The  SSPPAACCEE command will first try to scroll down and go to the next image only if it is already on the bottom
+              of the page. Useful if the images you are watching are text pages, all you have to do to get the next piece of text  is
+              to press space...
+
+       --aa,, ----aauuttoozzoooomm
+              Enable autozoom.  FFbbii will automagically pick a reasonable zoom factor when loading a new image.
+
+       ----((nnoo))aauuttoouupp
+              Like autozoom, but scale up only.
+
+       ----((nnoo))aauuttooddoowwnn
+              Like autozoom, but scale down only.
+
+       ----((nnoo))ffiittwwiiddtthh
+              Use width only for autoscaling.
+
+       --vv,, ----((nnoo))vveerrbboossee
+              Be verbose: enable status line on the bottom of the screen.
+
+       --uu,, ----((nnoo))rraannddoomm
+              Randomize the order of the filenames.
+
+       ----((nnoo))ccoommmmeennttss
+              Display  comment tags (if present) instead of the filename. Probably only useful if you added reasonable comments your‐
+              self (using wwrrjjppggccoomm(1) for example), otherwise you likely just find texts pointing to the software which  created  the
+              image.
+
+       --ee,, ----((nnoo))eeddiitt
+              Enable editing commands.
+
+       ----((nnoo))bbaacckkuupp
+              Create backup files (when editing images).
+
+       --pp,, ----((nnoo))pprreesseerrvvee
+              Preserve timestamps (when editing images).
+
+       ----((nnoo))rreeaaddaahheeaadd
+              Read ahead images into cache.
+
+       ----ccaacchheemmeemm _s_i_z_e
+              Image cache _s_i_z_e in megabytes (MB).
+
+       ----bblleenndd _t_i_m_e
+              Image blend _t_i_m_e in miliseconds.
+
+       --TT _n,, ----vvtt _n
+              Start on virtual console _n.
+
+       --ss _s_t_e_p_s,, ----ssccrroollll _s_t_e_p_s
+              Set scroll _s_t_e_p_s in pixels (default is 50).
+
+       --tt _s_e_c,, ----ttiimmeeoouutt _s_e_c
+              Load next image after _s_e_c seconds without any keypress (i.e. slideshow).
+
+       --11,, ----((nnoo))oonnccee
+              Don't loop (only use with --tt).
+
+       --rr _n,, ----rreessoolluuttiioonn _n
+              Select resolution, _n _= _1_._._5 (only _P_h_o_t_o_C_D).
+
+       --gg _n,, ----ggaammmmaa _n
+              Gamma correction. Default is 1.0. Requires _P_s_e_u_d_o_c_o_l_o_r or _D_i_r_e_c_t_c_o_l_o_r visual, doesn't work for _T_r_u_e_c_o_l_o_r.
+
+       --ff _<_a_r_g_>,, ----ffoonntt _<_a_r_g_>
+              Set  font. This _<_a_r_g_> can be anything fontconfig accepts (see ffoonnttss--ccoonnff(5)).  Try ffcc--lliisstt(1) for a list of known fonts
+              on your system. The fontconfig config file is evaluated as well, so any generic stuff  defined  there  (such  as  mono,
+              sans)  will  work  as well. It is recommended to use monospaced fonts, the textboxes (help text, exif info) look better
+              then.
+
+       --dd _/_d_e_v_/_f_b_N,, ----ddeevviiccee _/_d_e_v_/_f_b_N
+              Use _/_d_e_v_/_f_b_N device framebuffer. Default is the one your virtual console is mapped to.
+
+       --mm _v_i_d_e_o_m_o_d_e,, ----mmooddee _v_i_d_e_o_m_o_d_e
+              Name of the video mode to use (video mode must be listed in _/_e_t_c_/_f_b_._m_o_d_e_s). Default is not to change the video mode.
+
+EENNVVIIRROONNMMEENNTT
+       FFbbii uses the following environment variables:
+
+       FFBBGGAAMMMMAA
+              This variable may be used to specify a default gamma correction.
+
+CCOOMMMMAANNDD UUSSAAGGEE
+       The commands take effect immediately; it is not necessary to type a carriage return.
+
+       In the following commands, _i is a numerical argument.
+
+   SSccrroolllliinngg
+       LLEEFFTT__AARRRROOWW, RRIIGGHHTT__AARRRROOWW, UUPP__AARRRROOWW, DDOOWWNN__AARRRROOWW
+              Scroll large images.
+
+       PPRREEVV__SSCCRREEEENN, kk
+              Previous image.
+
+       NNEEXXTT__SSCCRREEEENN, SSPPAACCEE, jj
+              Next image.
+
+       _igg     Jump to image #_i.
+
+       RREETTUURRNN Write the filename of the current image to ssttddoouutt(3), then go to the next image.
+
+       The RREETTUURRNN vs. SSPPAACCEE key thing can be used to create a file list while reviewing the images and use the list  for  batch  pro‐
+       cessing later on:
+
+           _f_b_i _f_i_l_e_1_._g_i_f _f_i_l_e_2_._j_p_g _f_i_l_e_3_._j_p_g _> _f_i_l_e_i_m_a_g_e_l_i_s_t_._l_s_t
+
+           some RREETTUURRNN and SSPPAACCEE...
+
+           _f_b_i _-_l _f_i_l_e_i_m_a_g_e_l_i_s_t_._l_s_t
+
+   ZZoooomm
+       aa      Autozoom.
+
+       ++      In.
+
+       --      Out.
+
+       _iss     Set zoom to _i%.
+
+   OOtthheerr
+       EESSQQ, qq Quit.
+
+       vv      Toggle status line.
+
+       hh      Display textbox with brief help.
+
+       ii      Display textbox with some _E_X_I_F info.
+
+       pp      Pause the slideshow (if started with --tt, toggle).
+
+   EEddiitt mmooddee
+       FFbbii also provides some very basic image editing facilities. You have to start ffbbii with the _-_e switch to use them.
+
+       DD, SShhiifftt++dd
+              Delete image.
+
+       rr      Rotate 90 degrees clockwise.
+
+       ll      Rotate 90 degrees counter-clock wise.
+
+       xx      Mirror image vertically (top / bottom).
+
+       yy      Mirror image horizontally (left to right).
+
+       The delete function actually wants a capital letter DD, thus you have to type SShhiifftt++dd. This is done to avoid deleting images by
+       mistake because there are no safety bells: If you ask ffbbii to delete the image, it will be deleted without questions asked.
+
+       The rotate function actually works for _J_P_E_G images only. It does a lossless transformation of the image.
+
+BBUUGGSS
+       FFbbii needs rw access to the framebuffer devices (_/_d_e_v_/_f_b_N), i.e you (our your admin) have to make sure ffbbii can open the devices
+       in  rw mode. The IMHO most elegant way is to use PPAAMM(7) to chown the devices to the user logged in on the console. Another way
+       is to create some group, chown the special files to that group and put the users which are  allowed  to  use  the  framebuffer
+       device into the group. You can also make the special files world writable, but be aware of the security implications this has.
+       On a private box it might be fine to handle it this way though.
+
+       FFbbii also needs access to the linux console (_/_d_e_v_/_t_t_y_N) for sane console switch handling. That is obviously no problem for con‐
+       sole logins, but any kind of a pseudo tty (xterm, ssh, screen, ...) will nnoott work.
+
+SSEEEE AALLSSOO
+       ccoonnvveerrtt(1), ffbbsseett(1), ffcc--lliisstt(1), iimmaaggeemmaaggiicckk(1), wwrrjjppggccoomm(1), ffoonnttss--ccoonnff(5), PPAAMM(7)
+
+AAUUTTHHOORR
+       Gerd Hoffmann <<ggeerrdd@@kkrraaxxeell..oorrgg>>
+
+CCOOPPYYRRIIGGHHTT
+       Copyright (c) 1999-2012 Gerd Hoffmann <gerd@kraxel.org>
+
+       This  program  is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as
+       published by the Free Software Foundation; either version 2 of the License, or (at your option) any later version.
+
+       This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+       MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+       You  should have received a copy of the GNU General Public License along with this program; if not, write to the Free Software
+       Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
+
+
+
+FBI 2.08                                             (c) 1998-2012 Gerd Hoffmann                                               FBI(1)
